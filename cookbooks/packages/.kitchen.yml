@@ -1,0 +1,57 @@
+---
+driver:
+  name: vagrant
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-7
+
+suites:
+  - name: arraysingle
+    run_list:
+      - recipe[packages]
+    attributes:
+      packages-cookbook: [grep, nano, scrub]
+    provisioner:
+      require_chef_omnibus: 12.0.3
+    verifier:
+      inspec_tests:
+        - ./test
+
+  - name: arraymulti
+    run_list:
+      - recipe[packages]
+    attributes:
+      packages-cookbook: [grep, nano, scrub]
+    verifier:
+      inspec_tests:
+        - ./test
+
+  - name: hashsingle
+    run_list:
+      - recipe[packages]
+    attributes:
+      packages-cookbook:
+        grep: 'install'
+        nano: 'install'
+        scrub: 'install'
+    provisioner:
+      require_chef_omnibus: 12.0.3
+    verifier:
+      inspec_tests:
+        - ./test
+
+  - name: hashmulti
+    run_list:
+      - recipe[packages]
+    attributes:
+      packages-cookbook:
+        grep: 'install'
+        nano: 'install'
+        scrub: 'install'
+    verifier:
+      inspec_tests:
+        - ./test

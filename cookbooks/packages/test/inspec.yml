@@ -1,0 +1,7 @@
+name: test
+title: Test packages cookbook
+maintainer: Matt Ray <matt@chef.io>
+copyright: Chef Software, Inc.
+license: Apache 2.0
+summary: Test packages cookbook
+version: 0.1.0
